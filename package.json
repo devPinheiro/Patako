@@ -1,0 +1,22 @@
+{
+  "name": "ile-iwe",
+  "version": "1.0.0",
+  "description": "A unique diary for anyone ( diary that speaks your language )",
+  "main": "app.js",
+  "scripts": {
+    "test": "nyc mocha src/*/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devPinheiro/Patako.git"
+  },
+  "keywords": [
+    "Notepad",
+    "Multi-language Diary",
+    "Multi-Cultural Diary",
+    "Diary",
+    "Online-Diary"
+  ],
+  "author": "Pinheiro Samuel",
+  "license": "ISC"
+}
