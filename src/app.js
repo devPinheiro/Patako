@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import connect from './config/db';
 import config from './config/config';
+import { apiRouter } from './api';
 
 
 // initialize our express app
@@ -16,10 +17,8 @@ const PORT = process.env.PORT || config.port;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// create a simple route
-app.get('/', (req, res)=>{
-   res.send('Hello World');
-});
+// create api route
+app.use('/api', apiRouter);
 
 // 
 app.use((req, res, next) => {
