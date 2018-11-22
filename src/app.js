@@ -11,14 +11,14 @@ const app = express();
 const route = express.Router();
 const PORT = process.env.PORT || config.port;
 // connect to mongodb
-// connect();
+connect();
 
 // setup middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // create api route
-app.use('/api', apiRouter);
+app.use('/api',apiRouter);
 
 // 
 app.use((req, res, next) => {
