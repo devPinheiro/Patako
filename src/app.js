@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import connect from './config/db';
+import { connect } from './config/db';
 import config from './config/config';
 import { apiRouter } from './api';
 
@@ -32,4 +32,7 @@ app.use((req, res, next) => {
 
 // listen to Port
 app.listen(PORT, ()=> console.log(`Server started at port: ${PORT}`));
+
+// lets export app for our unit testing 
+export default app;
 
