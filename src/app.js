@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // create api route
-app.use('/api',apiRouter);
+app.use('/api/v1',apiRouter);
 
 // 
 app.use((req, res, next) => {

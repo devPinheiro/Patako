@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node --presets env src/app.js",
-    "test": "nyc mocha src/*/test.js"
+    "test": "cross-env NODE_env=test nyc mocha --require babel-core/register src/**/test.js --timeout 8000 --exit"
   },
   "repository": {
     "type": "git",
@@ -20,16 +20,40 @@
   ],
   "author": "Pinheiro Samuel",
   "license": "ISC",
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
   "dependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
+    "@babel/register": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "express": "^4.16.4",
     "mongoose": "^5.3.12",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.6",
-    "joi": "^14.0.1"
-  }
+    "joi": "^14.0.1",
+    "babel-plugin-istanbul": "^5.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "chai-http": "^4.2.0",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
+  },
+  "devDependencies": {}
 }
