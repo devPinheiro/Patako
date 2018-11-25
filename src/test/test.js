@@ -7,6 +7,8 @@ const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
+let note_id;
+
 // let;s first clear the user in the db
 // describe('Clear Users before each test', ()=>{
 //     beforeEach('', (done)=>{
@@ -41,6 +43,23 @@ describe('POST - create a new note entry', () =>{
             "title": " lets test",
             "content": "This is a Note api test"
         })
+        .end((err, res)=>{
+            expect(err).to.be.null;
+            res.should.have.status(200);
+            res.body.should.have.property('title');
+            res.body.should.have.property('_id');
+            res.body.should.have.property('content');
+            note_id = res.body._id;
+            done();
+        });
+    });
+});
+
+//let's test the get one note entry endpoint out
+describe('GET - fetch a unique note entry', () =>{
+    it('It should fetch an entry of notes', (done)=>{
+        chai.request(app)
+        .get(`/api/v1/notes/${note_id}`)
         .end((err, res)=>{
             expect(err).to.be.null;
             res.should.have.status(200);

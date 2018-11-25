@@ -25,6 +25,16 @@ export default {
             console.log(err);
             return res.status(500).send(err);
         }
+    },
+
+    // Implement async func for get one method
+    async getOne(req, res) {
+        // let's get unique note id from user
+        const note_id = req.body._id;
+        // let's va;idate that user inputted
+        const scchema = Joi.Object().keys({
+            
+        })
     }
     
 }
