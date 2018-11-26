@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/devPinheiro/Patako/badge.svg?branch=master)](https://coveralls.io/github/devPinheiro/Patako?branch=master)
+[![Build Status](https://travis-ci.org/devPinheiro/Patako.svg?branch=master)](https://travis-ci.org/devPinheiro/Patako) [![Coverage Status](https://coveralls.io/repos/github/devPinheiro/Patako/badge.svg?branch=master)](https://coveralls.io/github/devPinheiro/Patako?branch=master) 
 # Patako
 A simple Nodejs API for online diary app
 
