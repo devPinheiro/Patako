@@ -9,7 +9,7 @@ import { apiRouter } from './api';
 // initialize our express app
 const app = express();
 const route = express.Router();
-const PORT = process.env.PORT || config.port;
+const PORT = process.env.PORT || 3700;
 // connect to mongodb
 connect();
 
