@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-import config from './config';
+import { getConfig } from "./config";
 
-export const connect = () => mongoose.connect(config.conString);
+const config = getConfig(process.env.NODE_ENV);
+mongoose.Promise = global.Promise;
+export const connect = () => mongoose.connect(config.MONGO_URI);
 
