@@ -53,6 +53,19 @@ describe('POST - create a new note entry', () =>{
             done();
         });
     });
+    it('Title is required', (done) => {
+        chai.request(app)
+            .post('/api/v1/notes')
+            .send({
+                "title": "",
+                "content": "This is a Note api test"
+            })
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(400);
+                done();
+            });
+    });
 });
 
 //let's test the get one note entry endpoint out
@@ -68,5 +81,24 @@ describe('GET - fetch a unique note entry', () =>{
             res.body.should.have.property('content');
             done();
         });
+    });
+    it('Invalid note should throw some errors ', (done) => {
+        chai.request(app)
+            .get(`/api/v1/notes/5bd85e98a07f968a88e68814`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(404);
+                res.body.should.have.property('err');
+                done();
+            });
+    });
+    it('Invalid note should throw some errors ', (done) => {
+        chai.request(app)
+            .get(`/api/v1/notes/5`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(500);
+                done();
+            });
     });
 });

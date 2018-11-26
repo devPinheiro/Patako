@@ -29,12 +29,21 @@ export default {
 
     // Implement async func for get one method
     async getOne(req, res) {
-        // let's get unique note id from user
-        const note_id = req.body._id;
-        // let's va;idate that user inputted
-        const scchema = Joi.Object().keys({
+        // let's try and catch for the async func in case the promise fail to resolve
+        try {
+            // let's get unique note id from user
+            const { id } = req.params;
+            // let's fetch note
+            const note = await Note.findById({_id: id});
+            if(!note){
+               return res.status(404).json({err:"note not found"});
+            }
+            return res.status(200).send(note);
             
-        })
+        }
+        catch(error) {
+            return res.status(500).send(error);
+        }
     }
     
 }
