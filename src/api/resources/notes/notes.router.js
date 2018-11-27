@@ -3,7 +3,9 @@ import noteController from './notes.controller';
 
 export const noteRouter = express.Router();
 // define routes for the notes
-noteRouter.route('/').post(noteController.create);
+noteRouter.route('/')
+    .post(noteController.create)
+    .get(noteController.getAll);
 
 noteRouter.route('/:id')
     .get(noteController.getOne)

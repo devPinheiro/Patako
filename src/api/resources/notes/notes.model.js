@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import paginate from 'mongoose-paginate'
 const { Schema } = mongoose;
 
 const noteSchema = new Schema({
@@ -12,4 +13,5 @@ const noteSchema = new Schema({
   }
 });
 
+noteSchema.plugin(paginate);
 export default mongoose.model('Note', noteSchema);

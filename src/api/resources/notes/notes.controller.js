@@ -22,8 +22,27 @@ export default {
         // catch any error if promise fail to resolve
         } 
         catch (err) {
-            console.log(err);
             return res.status(500).send(err);
+        }
+    },
+
+
+    // Implement async func for get all method
+    async getAll(req, res) {
+        // let's try and catch for the async func in case the promise fail to resolve
+        try {
+            // let's fetch note using paginate
+            const {page, perPage} = req.query;
+            const options = {
+                page: parseInt(page,10) || 1,
+                limit: parseInt(perPage, 10) || 10
+            };
+            const note = await Note.paginate({}, options);
+            return res.status(200).send(note);
+
+        }
+        catch (error) {
+            return res.status(500).send(error);
         }
     },
 
