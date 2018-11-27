@@ -68,6 +68,31 @@ describe('POST - create a new note entry', () =>{
     });
 });
 
+//let's test the get all notes entry endpoint out
+describe('GET - fetch all unique note entry', () => {
+    it('It should fetch all entry of notes', (done) => {
+        chai.request(app)
+            .get(`/api/v1/notes`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(200);
+                res.body.should.have.property('docs');
+                res.body.should.have.property('pages');
+                res.body.should.have.property('total');
+                done();
+            });
+    }); 
+    it('Invalid note should throw some errors ', (done) => {
+        chai.request(app)
+            .get(`/api/v1/notes/89`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(500);
+                done();
+            });
+    });
+});
+
 //let's test the get one note entry endpoint out
 describe('GET - fetch a unique note entry', () =>{
     it('It should fetch an entry of notes', (done)=>{
