@@ -103,7 +103,52 @@ describe('GET - fetch a unique note entry', () =>{
     });
 });
 
-
+//let's test the update note entry endpoint out
+describe('UPDATE - modifies a unique note entry', () => {
+    it('It should modify an entry of notes', (done) => {
+        chai.request(app)
+            .put(`/api/v1/notes/${note_id}`)
+            .send({
+                "title": "Second test",
+                "content": "This is a Note api test"
+            })
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(200);
+                res.body.should.have.property('title');
+                res.body.should.have.property('_id');
+                res.body.should.have.property('content');
+                done();
+            });
+    });
+    it('Invalid note should throw some errors due to wrong id ', (done) => {
+        chai.request(app)
+            .put(`/api/v1/notes/5bd85e98a07f968a88e68814`)
+            .send({
+                "title": "Second test",
+                "content": "This is a Note api test"
+            })
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(404);
+                res.body.should.have.property('err');
+                done();
+            });
+    });
+    it('Invalid note should throw some errors ', (done) => {
+        chai.request(app)
+            .put(`/api/v1/notes/${note_id}`)
+            .send({
+                "title": "",
+                "content": "This is a Note api test"
+            })
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(400);
+                done();
+            });
+    });
+});
 
 //let's test the delete note entry endpoint out
 describe('DELETE - fetch a unique note entry', () => {
@@ -137,3 +182,4 @@ describe('DELETE - fetch a unique note entry', () => {
             });
     });
 });
+
