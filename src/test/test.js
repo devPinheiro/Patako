@@ -102,3 +102,38 @@ describe('GET - fetch a unique note entry', () =>{
             });
     });
 });
+
+
+
+//let's test the delete note entry endpoint out
+describe('DELETE - fetch a unique note entry', () => {
+    it('It should delete an entry of notes', (done) => {
+        chai.request(app)
+            .delete(`/api/v1/notes/${note_id}`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(200);
+                res.body.should.have.property('message');
+                done();
+            });
+    });
+    it('Invalid note should throw some errors due to wrong id ', (done) => {
+        chai.request(app)
+            .delete(`/api/v1/notes/5bd85e98a07f968a88e68814`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(404);
+                res.body.should.have.property('err');
+                done();
+            });
+    });
+    it('Invalid note should throw some errors ', (done) => {
+        chai.request(app)
+            .delete(`/api/v1/notes/5`)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                res.should.have.status(500);
+                done();
+            });
+    });
+});
