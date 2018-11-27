@@ -7,4 +7,5 @@ noteRouter.route('/').post(noteController.create);
 
 noteRouter.route('/:id')
     .get(noteController.getOne)
-    .delete(noteController.delete);
+    .delete(noteController.delete)
+    .put(noteController.update);
