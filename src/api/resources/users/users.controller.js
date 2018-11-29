@@ -15,6 +15,11 @@ export default {
                     .required(),
           password: Joi.string().required
        });
+
+       const {value, error } = Joi.validate(Schema);
+       if(error & error.details) {
+           
+       }
        return await res.json('started');
     }
 
