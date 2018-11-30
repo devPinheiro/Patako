@@ -8,18 +8,9 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 let note_id;
+let token;
 
-// let;s first clear the user in the db
-// describe('Clear Users before each test', ()=>{
-//     beforeEach('', (done)=>{
-//         User.deleteMany({}, (err, res)=>{
-//         if(err){
-//             console.log(err);
-//         }
-//         done();
-//         });
-//     });
-// });
+
 
 // let's cover test for invalid endpoints to our applicaton
 describe('Invalid routes should not be accessible', () => {
@@ -33,6 +24,80 @@ describe('Invalid routes should not be accessible', () => {
         });
     });
 }); 
+
+// Reset user model before each test
+describe('Create Account, Login and Get Token', () => {
+    beforeEach((done) => {
+        User.deleteMany({}, (err) => {
+            console.log(err);
+            done();
+        });
+    });
+
+    // POST create a new user test
+    describe('POST register a new user test', () => {
+        it('It should allow new users sign up', (done) => {
+            // using chai-http plugin
+            chai.request(app)
+                .post('/api/v1/users/signup')
+                .send({
+                    firstName: "tester",
+                    lastName: "tester",
+                    email: "tester@test.com",
+                    password: "tester",
+                    role: 2
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null;
+                    res.should.have.status(200);
+                    res.body.should.have.property('success');
+
+                    //attempt login with user credentials
+                    chai.request(app)
+                        .post('/api/v1/users/login')
+                        .send({
+                            email: "tester@test.com",
+                            password: "tester"
+                        })
+                        .end((err, res) => {
+                            res.should.have.status(200);
+                            res.body.should.have.property('token');
+                            res.body.should.be.a('Object');
+                            token = `Bearer ${res.body.token}`;
+
+                            // attempt to login using an incorrect endpoint
+                            chai.request(app)
+                                .post('/api/v1/users/l')
+                                .send({
+                                    email: "tester@test.com",
+                                    password: "tester"
+                                })
+                                .end((err, res) => {
+                                    res.should.have.status(404);
+                                    res.body.should.be.a('Object');
+
+                                })
+
+                            // attempt to login using an incorrect credential
+                            chai.request(app)
+                                .post('/api/v1/users/login')
+                                .send({
+                                    email: "tester@testerer.com",
+                                    password: "tester"
+                                })
+                                .end((err, res) => {
+                                    res.should.have.status(404);
+                                    res.body.should.be.a('Object');
+                                    res.body.should.have.property('err');
+                                    done();
+                                })
+                        })
+                })
+        })
+    });
+});
+
+
 
 //let's test the create endpoint out
 describe('POST - create a new note entry', () =>{

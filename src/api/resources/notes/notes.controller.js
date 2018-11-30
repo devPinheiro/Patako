@@ -11,6 +11,7 @@ export default {
               title: Joi.string().required(),
               content: Joi.string().required()
              });
+             
             // let's retrieve value or error from Joi.validate method
             const {value, error} = Joi.validate(req.body, schema);
             if(error && error.details){
