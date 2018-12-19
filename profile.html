@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MyDiary</title>
+  <link rel="shortcut-icon" href="">
+  <link rel="icon" href="https://">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app">
+  <header class="site-header">
+    <section class="logo left">
+    <a href="index.html">
+        <h3>My Diary</h3>
+    </a>
+    </section>
+    
+    <nav class="site-nav right">
+    <li><a href="landing.html">All Notes</a></li>
+    <li><a href="new_post.html">New Note &plus;</a></li>
+    <li><a href="profile.html">Profile</a></li>
+    <li><a href="index.html">Sign Out</a></li>
+  
+    </nav>
+    
+  </header>
+  
+  <main class="site-hero">
+    <section class="info-section ">
+       
+        <div class="content_wrapper_profile">
+            <div class="card_profile">
+                <div class="text-center">
+                    <h3>20</h3>
+                    <h6>Notes Created</h6>
+                </div>
+               
+            </div> 
+            
+            <div class="card_profile">
+                <div class="text-center">
+                    <h3>5</h3>
+                    <h6>Notifications</h6>
+                </div>
+            </div>
+
+            <div class="card_profile">
+                <div class="text-center">
+                    <h3>10</h3>
+                    <h6>Notes Modified</h6>
+                </div>
+            </div>
+    
+        </div> 
+
+        
+        
+        <div class="card details">
+
+            <div class="left">
+                <div class="content">
+                    <h6>User Account</h6>
+                    <br>
+                    <div class="form">
+
+                        <span>Username</span>
+                        <input type="text" id="username" name="username" value=" John Doe" placeholder="" required>
+                        <br>
+                        <span>Email</span>
+                        <input type="email" id="email" name="email" value="  john@doe.com" placeholder="" required>
+                        <br>
+
+
+                    </div>
+                    <div>
+                        <button type="submit" id="button">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="content">
+                    <h6>Set Reminder</h6>
+                    <br>
+                    <div class="form">      
+                        
+                        <span>Date</span>
+                        <input type="date" name="reminder_date" placeholder="" required>
+                        <br>
+                        <span>Time</span>
+                        <input type="time" value="03:00" name="reminder_time" placeholder="" required>
+                        <br>
+                    </div>
+                    <div>
+                        <button type="submit" id="button">submit</button>
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+        
+    
+    </section>
+
+
+    
+
+</main>
+
+  
+
+  <script src="script/scripts.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

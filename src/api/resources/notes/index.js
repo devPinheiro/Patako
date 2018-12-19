@@ -1,1 +1,0 @@
-export { noteRouter } from './notes.router';
